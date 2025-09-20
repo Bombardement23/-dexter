@@ -1,0 +1,122 @@
+<!-- made by @alcoolique & edited by @decal. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>clu.ng</title>
+    <meta name="theme-color" content="#000001">
+    <link rel="stylesheet" href="public/users/css/cat.css">
+    <link rel="icon" href="public/src/img/1281904753252765717.png" type="image/x-icon">
+    <link rel="shortcut icon" href="public/src/img/1281904753252765717.png" type="image/x-icon"> 
+    <meta content="Look at my Guns.lol/melino.K too" property="og:title" />
+    <meta content="http://clu.ng/" property="og:url" />
+    <meta content="https://i.imgur.com/y6XhCX6.jpeg" property="og:image" />
+</head>
+<script src="snow.js"></script>
+<script src="effects.js"></script>
+<script src="effects2.js"></script>
+<body>
+
+    <div id="overlay">
+        <button class="overlaybtn" onclick="removeOverlay()">!𝕯𝖊𝖝𝖙𝖊𝖗</button>
+    </div>
+
+    <div id="user-page">
+
+        <video class="background" autoplay muted loop playsinline style="object-fit: cover;">
+            <source src="./r2.wya.lol/banner.mp4" type="video/mp4">
+            Je browser ondersteunt geen video.
+        </video>
+
+        <div class="main-container" id="mainDiv">
+
+            <div class="profile-container">
+                <img class="pp" src="./r2.wya.lol/pp.png" draggable="false">
+                <p class="username breathing" data-tooltip="uid: 1">!𝕯𝖊𝖝𝖙𝖊𝖗</p>
+
+                <div class="badges-container">
+                    <div class="badges pic-badge" id="prem" data-tooltip="premium user" style="background-image: url('public/src/badges/premium.png');"></div>
+                    <div class="badges pic-badge" id="own" data-tooltip="site owner" style="background-image: url('public/src/badges/booster.png');"></div>
+                    <div class="badges pic-badge" id="early" data-tooltip="early user" style="background-image: url('public/src/badges/early.png');"></div>
+                </div>
+
+                <div class="bio-container">
+                    <div class="bio typewriter"></div>
+                </div>
+
+                <div class="pre-container">
+                    <div class="pre">
+                        <div class="cropped">
+                            <img draggable="false" id="rpc">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="links-container" id="linksDiv">
+                    <!-- je social icons hier (btc, ig, tt, tele) -->
+                </div>
+
+                <div class="linksline"></div>
+
+                <div class="views-container">
+                    <svg viewBox="0 0 24 24" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 14C3 9.02944 7.02944 5 12 5C16.9706 5 21 9.02944 21 14M17 14C17 16.7614 14.7614 19 12 19C9.23858 19 7 16.7614 7 14C7 11.2386 9.23858 9 12 9C14.7614 9 17 11.2386 17 14Z" stroke="#c18be0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <span id="view-count">0</span>
+                </div>
+            </div>
+
+            <div class="mutebutton">
+                <p id="mutetext" onclick="toggleMusic()">on</p>
+            </div>
+
+        </div>
+
+        <audio id="backgroundsong" src="./r2.wya.lol/music.mp3" loop></audio>
+
+        <!-- ✅ JSONBin script toegevoegd -->
+        <script>
+            const binId = "68cf021cae596e708ff54997"; // jouw Bin ID
+            const apiKey = "$2a$10$v.sw5rPiy9AphrgXeNCgoe4k6fXEEIk7b.wqdc8uVD0y2/aArBpSe"; // secret key (NIET zichtbaar laten in productie!)
+            const apiUrl = `https://api.jsonbin.io/v3/b/${binId}`;
+
+            async function updateViewCounter() {
+                try {
+                    // Huidige view ophalen
+                    let response = await fetch(apiUrl, {
+                        headers: { "X-Master-Key": apiKey }
+                    });
+                    if (!response.ok) throw new Error("Kan views niet ophalen");
+
+                    let data = await response.json();
+                    let currentCount = data.record.views || 0;
+                    currentCount++;
+
+                    // Update JSONBin
+                    await fetch(apiUrl, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Master-Key": apiKey
+                        },
+                        body: JSON.stringify({ views: currentCount })
+                    });
+
+                    // Update de teller in HTML
+                    document.getElementById("view-count").textContent = currentCount;
+                } catch (err) {
+                    console.error(err);
+                    document.getElementById("view-count").textContent = "Error!";
+                }
+            }
+
+            updateViewCounter();
+        </script>
+
+    </div>
+
+</body>
+</html>
