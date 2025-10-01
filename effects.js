@@ -35,7 +35,7 @@ function toggleMusic() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const prefix = "⠐ ";
-    const titleText = "!𝕯𝖊𝖝𝖙𝖊𝖗";
+    const titleText = "!𝓂𝑒𝓁𝒾𝓃𝑜.𝒦";
     let index = 0;
     let isDeleting = false;
 
